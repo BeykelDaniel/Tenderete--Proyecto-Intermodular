@@ -240,7 +240,7 @@
         fetch(url, {
             method: 'POST',
             headers: { 
-                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }

@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('pagina.profile_edit', [
             'user' => $request->user(),
         ]);
     }
@@ -33,8 +33,13 @@ class ProfileController extends Controller
             $user->email_verified_at = null;
         }
 
-        // --- SUBIDA DE FOTO DE PERFIL ---
-        if ($request->hasFile('perfil_foto')) {
+        // --- SUBIDA / BORRADO DE FOTO DE PERFIL ---
+        if ($request->has('remove_photo') && $request->remove_photo) {
+            if ($user->perfil_foto && $user->perfil_foto != 'perfil_default.png') {
+                \Storage::disk('public')->delete(str_replace('storage/', '', $user->perfil_foto));
+            }
+            $user->perfil_foto = null;
+        } elseif ($request->hasFile('perfil_foto')) {
             // Borrar antigua si existe
             if ($user->perfil_foto && $user->perfil_foto != 'perfil_default.png') {
                 \Storage::disk('public')->delete(str_replace('storage/', '', $user->perfil_foto));
@@ -46,7 +51,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Perfil actualizado correctamente.');
     }
 
     /**
@@ -80,6 +85,6 @@ class ProfileController extends Controller
         $user->font_size = $request->input('font_size');
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'font-size-updated');
+        return Redirect::route('profile.edit')->with('success', 'Tamaño de letra actualizado.');
     }
 }

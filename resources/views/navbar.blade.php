@@ -25,20 +25,20 @@
             </a>
         </div>
 
-        <button id="menu-toggle" class="lg:hidden text-[#32424D] focus:outline-none">
+        <button id="menu-toggle" class="lg:hidden text-[#32424D] focus:outline-none p-2 border-2 border-[#32424D] rounded-lg">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
-
-        <ul id="nav-menu" class="flex flex-row items-center gap-x-6 md:gap-x-10 lg:gap-x-14 font-bold">
+<!-- slide -->
+        <ul id="nav-menu" class="hidden lg:flex flex-row items-center gap-x-6 md:gap-x-10 lg:gap-x-14 font-bold">
             <li><a href="{{ route('pagina.amigos') }}"
                     class="text-[#32424D] uppercase whitespace-nowrap text-xs md:text-base hover:text-[#C2841D] transition-colors"><i
                         class="bi bi-people-fill"></i> <br> Mis Amigos</a>
             </li>
             <!-- MIS ACTIVIDADES - Componente Vue -->
             <calendario-navbar 
-                initial-inscripciones="{{ json_encode(array_values($inscripciones_data ?? [])) }}" 
+                :initial-inscripciones="{{ json_encode(array_values($inscripciones_data ?? [])) }}" 
                 route-inscritas="{{ route('actividades.inscritas') }}"
                 :is-auth="{{ Auth::check() ? 'true' : 'false' }}">
             </calendario-navbar>

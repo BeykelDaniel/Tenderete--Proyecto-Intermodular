@@ -19,7 +19,9 @@
         "vue": "^3.5.29"
     },
     "dependencies": {
+        "@popperjs/core": "^2.11.8",
         "admin-lte": "^4.0.0-rc6",
+        "bootstrap": "^5.3.8",
         "bootstrap-icons": "^1.13.1",
         "flatpickr": "^4.6.13"
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-[#E8D258] rounded-[40px] overflow-hidden border-4 border-[#32424D] shadow-2xl h-[600px] md:h-[700px]">
+  <div class="relative bg-[#E8D258] rounded-[30px] md:rounded-[40px] overflow-hidden border-2 md:border-4 border-[#32424D] shadow-2xl h-[450px] md:h-[700px]">
     
     <div v-for="(slide, index) in slides" :key="index">
       <transition 
@@ -20,14 +20,14 @@
           >
           
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-20">
-            <h1 class="text-5xl md:text-7xl font-black text-[#32424D] mb-6 leading-tight" v-html="slide.title"></h1>
-            <p class="text-2xl text-[#32424D] font-bold max-w-4xl mb-10 leading-relaxed">{{ slide.desc }}</p>
+            <h1 class="!text-2xl md:!text-8xl font-black text-[#32424D] mb-4 md:mb-8 leading-tight drop-shadow-sm" v-html="slide.title"></h1>
+            <p class="!text-sm md:!text-4xl text-[#32424D] font-bold max-w-5xl mb-6 md:mb-12 leading-relaxed px-2 opactiy-90">{{ slide.desc }}</p>
             
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a :href="loginRoute" class="bg-[#32424D] text-[#E8D258] text-2xl font-bold px-10 py-5 rounded-full hover:scale-105 transition-transform shadow-lg">
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-6 w-full sm:w-auto px-4">
+                <a :href="loginRoute" class="w-full sm:w-auto bg-[#32424D] text-[#E8D258] !text-lg md:!text-4xl font-bold px-6 py-3 md:px-12 md:py-6 rounded-full hover:scale-105 transition-transform shadow-lg text-center">
                   Empezar ahora
                 </a>
-                <a href="#servicios" class="bg-white text-[#32424D] border-3 border-[#32424D] text-2xl font-bold px-10 py-5 rounded-full hover:bg-gray-50 transition-colors shadow-md">
+                <a href="#servicios" class="w-full sm:w-auto bg-white text-[#32424D] border-2 md:border-4 border-[#32424D] !text-lg md:!text-4xl font-bold px-6 py-3 md:px-12 md:py-6 rounded-full hover:bg-gray-50 transition-colors shadow-md text-center">
                     Saber más
                 </a>
             </div>
@@ -36,20 +36,21 @@
       </transition>
     </div>
 
-    <button @click="prev" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 p-4 rounded-full text-[#32424D] z-30 shadow-xl hover:bg-white transition-colors">
-      <i class="bi bi-chevron-left text-3xl"></i>
+    <!-- Flechas ocultas en móvil, visibles desde MD -->
+    <button @click="prev" class="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 p-5 rounded-full text-[#32424D] z-30 shadow-xl hover:bg-white transition-colors items-center justify-center">
+      <i class="bi bi-chevron-left text-4xl"></i>
     </button>
-    <button @click="next" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 p-4 rounded-full text-[#32424D] z-30 shadow-xl hover:bg-white transition-colors">
-      <i class="bi bi-chevron-right text-3xl"></i>
+    <button @click="next" class="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 p-5 rounded-full text-[#32424D] z-30 shadow-xl hover:bg-white transition-colors items-center justify-center">
+      <i class="bi bi-chevron-right text-4xl"></i>
     </button>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+    <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-30">
       <button 
         v-for="(_, i) in slides" 
         :key="i"
         @click="activeSlide = i"
-        :class="activeSlide === i ? 'bg-[#32424D] w-8' : 'bg-[#32424D]/50 w-3'"
-        class="h-3 rounded-full transition-all duration-300"
+        :class="activeSlide === i ? 'bg-[#32424D] w-6 md:w-8' : 'bg-[#32424D]/30 w-2 md:w-3'"
+        class="h-2 md:h-3 rounded-full transition-all duration-300"
       ></button>
     </div>
   </div>
@@ -62,7 +63,7 @@ const props = defineProps(['loginRoute', 'bannerImg', 'logoImg', 'storageImg']);
 
 const activeSlide = ref(0);
 const slides = [
-  { image: props.bannerImg, title: 'Tu comunidad, <br><span class=\'text-[#bc6a50]\'>más viva que nunca.</span>', desc: 'Únete a Tenderete: el lugar donde compartir momentos, hacer nuevos amigos y disfrutar de actividades pensadas para ti.' },
+  { image: props.bannerImg, title: 'Tu comunidad, <br><span class=\'text-[#bc6a50]\'>más viva que nunca.</span>', desc: '¡Vive Tenderete! Amigos, momentos y diversión.' },
   { image: props.storageImg, title: 'Actividades <br><span class=\'text-[#bc6a50]\'>para todos.</span>', desc: 'Talleres, paseos y charlas pensadas específicamente para tu bienestar y diversión.' },
   { image: props.logoImg, title: 'Un entorno <br><span class=\'text-[#bc6a50]\'>cerca de ti.</span>', desc: 'Diseñado con cariño y respeto, pensando siempre en tu comodidad y seguridad.' }
 ];

@@ -4,36 +4,53 @@
 
 :root {
     --app-font-size: 18px;
-    /* Default */
+    /* Base size */
+}
+
+html {
+    font-size: var(--app-font-size);
 }
 
 body {
-    font-size: var(--app-font-size) !important;
+    font-size: 1rem;
     @apply bg-gray-100 antialiased font-sans;
 }
 
-/* Senior Accessibility Font Scaling */
+/* Global scaling for senior accessibility */
 p,
-span,
-a,
-button,
+label,
 input,
-select,
 textarea,
-label {
-    font-size: var(--app-font-size) !important;
+select,
+button,
+a,
+li,
+span {
+    font-size: 1rem;
 }
 
 h1 {
-    font-size: calc(var(--app-font-size) * 2) !important;
+    font-size: 2.5rem !important;
 }
 
 h2 {
-    font-size: calc(var(--app-font-size) * 1.5) !important;
+    font-size: 2rem !important;
 }
 
 h3 {
-    font-size: calc(var(--app-font-size) * 1.25) !important;
+    font-size: 1.5rem !important;
+}
+
+h4 {
+    font-size: 1.25rem !important;
+}
+
+/* Highlight spans in headings should follow parent size */
+h1 span,
+h2 span,
+h3 span,
+h4 span {
+    font-size: inherit !important;
 }
 
 /* Transitions for smooth UX */
@@ -42,9 +59,19 @@ h3 {
 }
 
 [x-cloak],
-[v-cloak],
-[x-show] {
-    display: none !important;
+[v-cloak] {
+    display: none;
+}
+
+/* Carousel Transitions */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 
 /* Flatpickr Senior Friendly Customization */
@@ -84,20 +111,55 @@ h3 {
 @media (max-width: 1024px) {
     #nav-menu {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #F1E498;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        height: 100vh;
+        background-color: #E8D258;
         flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        border-bottom: 2px solid #32424D;
-        z-index: 100;
+        padding: 100px 30px 40px;
+        gap: 30px;
+        border-left: 4px solid #32424D;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        overflow-y: auto;
     }
 
     #nav-menu.show {
         display: flex;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    /* Ajuste para los elementos individuales en móvil */
+    #nav-menu li,
+    #nav-menu form {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-menu a,
+    #nav-menu button {
+        font-size: 1.25rem !important;
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #nav-menu br {
+        display: none;
     }
 
     .dropdown-container {

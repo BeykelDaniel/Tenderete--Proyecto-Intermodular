@@ -17,29 +17,33 @@
         </div>
 
         {{-- CABECERA --}}
-        <div class="flex items-center gap-4 mb-8 bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-            @if($actividad->imagen)
-                <img src="{{ asset($actividad->imagen) }}" class="w-16 h-16 rounded-2xl object-cover shadow-sm">
-            @endif
-            <div>
-                <h2 class="text-3xl font-black text-gray-800 uppercase">{{ $actividad->nombre }}</h2>
-                <p class="text-gray-400 font-bold uppercase text-xs tracking-widest"><i class="bi bi-images text-pink-500 mr-1"></i> Álbum Digital</p>
+        <div class="flex flex-col md:flex-row items-center gap-4 mb-8 bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                @if($actividad->imagen)
+                    <img src="{{ asset($actividad->imagen) }}" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl object-cover shadow-sm">
+                @endif
+                <div class="flex-1">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-800 uppercase leading-tight">{{ $actividad->nombre }}</h2>
+                    <p class="text-gray-400 font-bold uppercase text-[10px] md:text-xs tracking-widest"><i class="bi bi-images text-pink-500 mr-1"></i> Álbum Digital</p>
+                </div>
             </div>
-            <a href="{{ route('pagina.album') }}" class="ml-auto px-6 py-3 bg-gray-100 text-gray-600 rounded-2xl font-black uppercase text-xs hover:bg-gray-200 transition-all">Volver</a>
+            <a href="{{ route('pagina.album') }}" class="w-full md:w-auto md:ml-auto px-6 py-4 md:py-3 bg-gray-100 text-gray-600 rounded-2xl font-black uppercase text-xs hover:bg-gray-200 transition-all text-center">
+                <i class="bi bi-arrow-left mr-1"></i> Volver
+            </a>
         </div>
 
         {{-- DROPZONE --}}
-        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mb-8">
-            <h4 class="text-lg font-black text-gray-800 uppercase mb-4 text-center">Subir contenido</h4>
-            <div id="dropzone" class="border-4 border-dashed border-gray-100 rounded-[30px] p-10 flex flex-col items-center justify-center cursor-pointer hover:border-pink-300 hover:bg-pink-50 transition-all group relative">
+        <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 mb-8 text-center">
+            <h4 class="text-lg font-black text-gray-800 uppercase mb-4">Subir contenido</h4>
+            <div id="dropzone" class="border-4 border-dashed border-gray-100 rounded-[30px] p-6 md:p-10 flex flex-col items-center justify-center cursor-pointer hover:border-pink-300 hover:bg-pink-50 transition-all group relative">
                 <input type="file" id="fileInput" class="absolute inset-0 opacity-0 cursor-pointer z-50" accept="image/*,video/*">
-                <div class="w-20 h-20 bg-gray-50 group-hover:bg-white rounded-2xl flex items-center justify-center mb-4 transition-colors">
-                    <i class="bi bi-cloud-arrow-up-fill text-4xl text-gray-300 group-hover:text-pink-500"></i>
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-50 group-hover:bg-white rounded-2xl flex items-center justify-center mb-4 transition-colors">
+                    <i class="bi bi-cloud-arrow-up-fill text-3xl md:text-4xl text-gray-300 group-hover:text-pink-500"></i>
                 </div>
-                <p class="text-gray-400 font-bold uppercase text-sm group-hover:text-gray-600 text-center">Pulsa aquí para elegir fotos o videos</p>
+                <p class="text-gray-400 font-bold uppercase text-xs md:text-sm group-hover:text-gray-600">Pulsa para elegir fotos o videos</p>
                 
                 <div id="progressContainer" class="hidden w-full max-w-md bg-gray-100 rounded-full h-4 mt-8 overflow-hidden">
-                    <div id="progressBar" class="bg-pink-500 h-full w-0 transition-all duration-300 flex items-center justify-center text-[14px] text-white font-bold">0%</div>
+                    <div id="progressBar" class="bg-pink-500 h-full w-0 transition-all duration-300 flex items-center justify-center text-[12px] text-white font-bold">0%</div>
                 </div>
             </div>
         </div>
@@ -52,15 +56,15 @@
 </div>
 
 <!-- MODAL LIGHTBOX -->
-<div id="mediaModal" class="fixed inset-0 bg-black/95 z-[9999] hidden flex flex-col items-center justify-center p-4 backdrop-blur-md">
+<div id="mediaModal" class="fixed inset-0 bg-black/98 z-[9999] hidden flex flex-col items-center justify-center p-4 backdrop-blur-md">
 
      <!-- BOTÓN CERRAR -->
-    <button onclick="cerrarMedia()" class="absolute top-6 right-6 w-14 h-14 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl hover:bg-black/60 transition-all duration-300 z-[10002]">
+    <button onclick="cerrarMedia()" class="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl md:text-3xl hover:bg-black/60 transition-all duration-300 z-[10002]">
         <i class="bi bi-x-lg"></i>
     </button>
 
     <!-- FLECHA IZQUIERDA -->
-    <button onclick="cambiarMedia(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl hover:bg-black/60 transition-all duration-300 z-[10001]">
+    <button onclick="cambiarMedia(-1)" class="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl md:text-3xl hover:bg-black/60 transition-all duration-300 z-[10001]">
         <i class="bi bi-chevron-left"></i>
     </button>
 
@@ -68,12 +72,12 @@
     <div id="mediaContent" class="w-full h-full flex items-center justify-center" onclick="cerrarMedia()"></div>
 
     <!-- FLECHA DERECHA -->
-    <button onclick="cambiarMedia(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl hover:bg-black/60 transition-all duration-300 z-[10001]">
+    <button onclick="cambiarMedia(1)" class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-white bg-black/40 shadow-2xl flex items-center justify-center text-white text-2xl md:text-3xl hover:bg-black/60 transition-all duration-300 z-[10001]">
         <i class="bi bi-chevron-right"></i>
     </button>
 
     <!-- CONTADOR FIJO ABAJO -->
-    <div id="mediaCounter" class="mt-4 text-white text-xl font-bold uppercase tracking-widest z-[10003]"></div>
+    <div id="mediaCounter" class="mt-4 text-white text-lg md:text-xl font-bold uppercase tracking-widest z-[10003] bg-black/40 px-6 py-2 rounded-full border border-white/20"></div>
 </div>
 
 {{-- MODAL DE CONFIRMACIÓN --}}
@@ -137,11 +141,11 @@ function renderizarGaleria(){
         div.className="aspect-square relative group rounded-3xl overflow-hidden shadow-sm border border-gray-100 bg-white animate-fadeIn";
         div.innerHTML=`
             ${mediaHtml}
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button onclick="verMedia(${index})" class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-gray-800 hover:scale-110 transition-transform text-2xl">
+            <div class="absolute inset-0 bg-black/40 md:opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                <button onclick="verMedia(${index})" class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-2xl flex items-center justify-center text-gray-800 hover:scale-110 transition-transform text-xl md:text-2xl">
                     <i class="bi bi-eye-fill"></i>
                 </button>
-                ${esDuenio?`<button onclick="confirmarEliminar(${item.id})" class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center text-white hover:scale-110 transition-transform text-2xl">
+                ${esDuenio?`<button onclick="confirmarEliminar(${item.id})" class="w-12 h-12 md:w-16 md:h-16 bg-red-500 rounded-2xl flex items-center justify-center text-white hover:scale-110 transition-transform text-xl md:text-2xl">
                     <i class="bi bi-trash-fill"></i>
                 </button>`:''}
             </div>`;
@@ -207,13 +211,20 @@ document.getElementById('btnConfirmarEliminar').onclick = function(){
     })
     .then(data => {
         if(data.success){
+            const wasInLightbox = !document.getElementById('mediaModal').classList.contains('hidden');
             mediaItems = mediaItems.filter(item => item.id !== id);
             renderizarGaleria();
             showToast("Archivo eliminado correctamente");
-            // Ajustar el modal si estaba abierto
-            if(currentIndex >= mediaItems.length) currentIndex = mediaItems.length - 1;
-            if(mediaItems.length > 0) verMedia(currentIndex);
-            else cerrarMedia();
+            
+            // Si el modal estaba abierto, cerramos o pasamos a la siguiente
+            if(wasInLightbox) {
+                if(mediaItems.length > 0) {
+                   if(currentIndex >= mediaItems.length) currentIndex = mediaItems.length - 1;
+                   verMedia(currentIndex);
+                } else {
+                   cerrarMedia();
+                }
+            }
         } else {
             showToast(data.message || "Error al eliminar", "error");
         }

@@ -38,20 +38,12 @@ public function inscritas()
         return [
             'fecha' => $act->fecha,
             'nombre' => $act->nombre,
-            'color' => $this->generarColor($act->nombre),
+            'color' => \App\Models\Actividades::generarColor($act->nombre),
             // Validación de fecha para evitar el Error 500
             'fechaFormateada' => $act->fecha ? \Carbon\Carbon::parse($act->fecha)->format('d/m/Y') : 'Pendiente'
         ];
     });
 
     return response()->json($actividades);
-}
-private function generarColor($str) {
-    $colores = ['#bc6a50', '#2d6a4f', '#1d3557', '#e63946', '#ffb703', '#8338ec', '#0077b6'];
-    $hash = 0; 
-    for ($i = 0; $i < strlen($str); $i++) {
-        $hash = ord($str[$i]) + (($hash << 5) - $hash);
-    }
-    return $colores[abs($hash) % count($colores)];
 }
 }

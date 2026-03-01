@@ -5,14 +5,12 @@
 @section('contenido')
 <div class="space-y-24 pb-20">
 
-    <div id="app">
-        <carrousel-home 
-            login-route="{{ route('pagina.login_usuarios') }}" 
-            banner-img="{{ asset('banner.png') }}" 
-            logo-img="{{ asset('logo.png') }}" 
-            storage-img="{{ asset('banner.png') }}">
-        </carrousel-home>
-    </div>
+    <carrousel-home 
+        login-route="{{ route('pagina.login_usuarios') }}" 
+        banner-img="{{ asset('banner.png') }}" 
+        logo-img="{{ asset('logo.png') }}" 
+        storage-img="{{ asset('banner.png') }}">
+    </carrousel-home>
 
     <section id="servicios" class="grid md:grid-cols-3 gap-12">
         <div class="bg-white p-10 rounded-[40px] border-4 border-gray-100 shadow-md hover:border-[#E8D258] transition-colors text-center">
