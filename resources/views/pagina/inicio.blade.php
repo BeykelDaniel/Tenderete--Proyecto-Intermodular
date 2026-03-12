@@ -12,12 +12,7 @@
                 <div class="w-[220px] shrink-0">
                     <video id="mainVideo" src="{{ asset('vid.mp4') }}" autoplay muted loop controls class="w-full rounded-lg bg-black"></video>
                 </div>
-                <div class="flex-1 overflow-y-auto max-h-[160px]">
-                    <h4 class="m-0 mb-2 text-[#bc6a50] text-lg font-bold uppercase italic">Transcripción</h4>
-                    <p class="m-0 text-[#3b4d57] text-base leading-relaxed text-justify italic font-medium">
-                        "Explora las actividades, añade nuevos amigos y organiza tu calendario sin complicaciones."
-                    </p>
-                </div>
+                
             </div>
             <div class="flex-grow rounded-xl overflow-hidden shadow-sm bg-white flex justify-center items-center p-2">
                 <img src="{{ asset('banner.png') }}" class="w-full h-auto object-contain block rounded-lg">

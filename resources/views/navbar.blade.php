@@ -94,7 +94,7 @@
                 </form>
             </li>
             @else
-            <li><a href="{{ route('pagina.login_usuarios') }}"
+            <li class="flex items-center gap-2"><a href="{{ route('pagina.login_usuarios') }}"
                     class="text-[#32424D] uppercase whitespace-nowrap text-xs md:text-base hover:text-[#C2841D] transition-colors"><i
                         class="fa-solid fa-user"></i> Entrar</a></li>
             @endauth
