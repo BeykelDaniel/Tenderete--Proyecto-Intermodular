@@ -30,7 +30,7 @@
     <div id="app" class="flex min-h-screen">
         @include('navbar')
 
-        <div class="flex-1 flex flex-col lg:ml-64 w-full transition-all duration-300 min-h-screen">
+        <div class="flex-1 flex flex-col lg:ml-64 w-full transition-all duration-300 min-h-screen pb-24 lg:pb-0">
             <main class="container mx-auto mt-8 px-4 flex-1">
                 @yield('contenido')
             </main>

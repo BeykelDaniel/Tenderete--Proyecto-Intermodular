@@ -1,8 +1,8 @@
 <template>
     <li class="relative dropdown-container" ref="btnContainer">
-        <button @click="toggle" class="relative text-[#32424D] hover:text-[#C2841D] transition-colors p-2 flex items-center focus:outline-none">
+        <button @click="toggle" class="relative text-[#32424D] hover:text-[#C2841D] transition-colors p-2 flex items-center focus:outline-none uppercase font-black text-2xl lg:text-xl gap-4">
             <i class="bi bi-bell-fill text-2xl lg:text-xl"></i> Notificaciones
-            <span v-if="count > 0" class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#E8D258]">
+            <span v-if="count > 0" class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#D4B830]">
                 {{ count }}
             </span>
         </button>

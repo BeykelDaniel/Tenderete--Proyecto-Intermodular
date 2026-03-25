@@ -33,18 +33,18 @@
         </svg>
     </button>
 
-    <!-- Logo -->
-    <div class="w-full flex justify-center mt-12 lg:mt-12 mb-8 lg:mb-12">
+    <!-- Logo Sidebar -->
+    <div class="w-full flex justify-center mt-6 lg:mt-12 mb-6 lg:mb-12">
         <a href="{{ route('pagina.inicio') }}" class="block p-1 bg-white rounded-full shadow-lg transform hover:scale-105 transition-transform">
-            <img src="{{ asset('logo.png') }}" class="h-28 w-28 lg:h-32 lg:w-32 rounded-full border-[3px] border-[#D4B830] object-cover">
+            <img src="{{ asset('logo.png') }}" class="h-20 w-20 lg:h-32 lg:w-32 rounded-full border-[3px] border-[#D4B830] object-cover">
         </a>
     </div>
 
-    <!-- Enlaces -->
-    <ul id="nav-menu" class="w-full flex flex-col items-start px-8 gap-y-6 lg:gap-y-8 font-black text-[#32424D] text-xl lg:text-lg">
+    <!-- Enlaces (Todos con tamaño text-2xl / lg:text-xl uniforme) -->
+    <ul id="nav-lista-nueva" class="w-full flex flex-col items-start px-8 gap-y-8 font-black text-[#32424D] text-lg lg:text-lg">
         
         <li class="w-full">
-            <a href="{{ route('pagina.amigos') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-3 w-full uppercase">
+            <a href="{{ route('pagina.amigos') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-4 w-full uppercase text-2xl lg:text-xl">
                <i class="bi bi-people-fill text-2xl lg:text-xl"></i> Mis Amigos
             </a>
         </li>
@@ -59,7 +59,7 @@
         </li>
 
         <li class="w-full">
-            <a href="{{ route('pagina.comunidades') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-3 w-full uppercase">
+            <a href="{{ route('pagina.comunidades') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-4 w-full uppercase text-2xl lg:text-xl transform hover:translate-x-2 transition-transform">
                 Comunidades
             </a>
         </li>
@@ -75,10 +75,10 @@
             </notificaciones-amistad>
         </li>
 
-        <li class="w-full mt-auto pt-8 border-t border-[#32424D]/20">
-            <a href="{{ route('profile.edit') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-3 w-full uppercase">
+        <li class="w-full mt-auto pt-6 border-t border-[#32424D]/20">
+            <a href="{{ route('profile.edit') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-4 w-full uppercase text-2xl lg:text-xl">
                 @if(Auth::check() && Auth::user()->perfil_foto)
-                    <img src="{{ asset(Auth::user()->perfil_foto) }}" class="w-8 h-8 rounded-full border-2 border-[#32424D] object-cover" alt="">
+                    <img src="{{ asset(Auth::user()->perfil_foto) }}" class="w-10 h-10 rounded-full border-2 border-[#32424D] object-cover" alt="">
                 @else
                     <i class="bi bi-gear-fill text-2xl lg:text-xl" aria-hidden="true"></i>
                 @endif
@@ -86,10 +86,10 @@
             </a>
         </li>
 
-        <li class="w-full mb-8 lg:mb-8 pt-6">
+        <li class="w-full mb-8 lg:mb-8 pt-4">
             <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
-                <button type="submit" class="hover:scale-105 transition-transform flex items-center gap-3 w-full text-[#bc6a50] uppercase text-left">
+                <button type="submit" class="hover:scale-105 transition-transform flex items-center gap-4 w-full text-[#bc6a50] uppercase text-left text-2xl lg:text-xl">
                     <i class="fa-solid fa-right-from-bracket text-2xl lg:text-xl" aria-hidden="true"></i>
                     Salir
                 </button>
@@ -97,7 +97,7 @@
         </li>
         @else
         <li class="w-full mt-auto pt-8 border-t border-[#32424D]/20 mb-8 lg:mb-8">
-            <a href="{{ route('pagina.login_usuarios') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-3 w-full uppercase">
+            <a href="{{ route('pagina.login_usuarios') }}" class="hover:text-[#C2841D] transition-colors flex items-center gap-4 w-full uppercase text-2xl lg:text-xl">
                 <i class="fa-solid fa-user text-2xl lg:text-xl"></i> Entrar
             </a>
         </li>
@@ -107,6 +107,39 @@
 
 <!-- Espaciador para vista móvil (empuja el contenido hacia abajo) -->
 <div class="lg:hidden h-24 w-full"></div>
+
+<!-- Barra de Navegación Inferior (Móvil) -->
+<div id="barra-inferior" class="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 z-[9999] flex justify-around items-center py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.15)] rounded-t-[30px]" style="display: flex !important;">
+    <a href="{{ route('pagina.inicio') }}" class="flex-1 flex flex-col items-center gap-1 transition-all active:scale-90 {{ request()->routeIs('pagina.inicio') ? 'text-[#bc6a50]' : 'text-[#32424D]/60' }}" style="color: {{ request()->routeIs('pagina.inicio') ? '#bc6a50' : '#32424Dbb' }} !important;">
+        <i class="bi bi-house-door-fill text-[1.4rem]"></i>
+        <span class="text-[10px] font-black uppercase leading-none">Inicio</span>
+    </a>
+    <a href="{{ route('pagina.amigos') }}" class="flex-1 flex flex-col items-center gap-1 transition-all active:scale-90 {{ request()->routeIs('pagina.amigos') ? 'text-[#bc6a50]' : 'text-[#32424D]/60' }}" style="color: {{ request()->routeIs('pagina.amigos') ? '#bc6a50' : '#32424Dbb' }} !important;">
+        <i class="bi bi-people-fill text-[1.4rem]"></i>
+        <span class="text-[10px] font-black uppercase leading-none">Amigos</span>
+    </a>
+    <a href="{{ route('actividades.inscritas') }}" class="flex-1 flex flex-col items-center gap-1 transition-all active:scale-90 {{ request()->routeIs('actividades.inscritas') ? 'text-[#bc6a50]' : 'text-[#32424D]/60' }}" style="color: {{ request()->routeIs('actividades.inscritas') ? '#bc6a50' : '#32424Dbb' }} !important;">
+        <i class="bi bi-calendar-check-fill text-[1.4rem]"></i>
+        <span class="text-[10px] font-black uppercase leading-none">Citas</span>
+    </a>
+    <a href="{{ route('pagina.comunidades') }}" class="flex-1 flex flex-col items-center justify-center gap-1 transition-all active:scale-90 {{ request()->routeIs('pagina.comunidades') ? 'text-[#bc6a50]' : 'text-[#32424D]/60' }}" style="color: {{ request()->routeIs('pagina.comunidades') ? '#bc6a50' : '#32424Dbb' }} !important;">
+        <span class="text-[10px] font-black uppercase leading-none mt-2">Comunidad</span>
+    </a>
+    <a href="{{ Auth::check() ? route('profile.edit') : route('pagina.login_usuarios') }}" class="flex-1 flex flex-col items-center gap-1 transition-all active:scale-90 {{ (request()->routeIs('profile.edit') || request()->routeIs('pagina.login_usuarios')) ? 'text-[#bc6a50]' : 'text-[#32424D]/60' }}" style="color: {{ (request()->routeIs('profile.edit') || request()->routeIs('pagina.login_usuarios')) ? '#bc6a50' : '#32424Dbb' }} !important;">
+        <div class="flex items-center justify-center w-6 h-6">
+            @auth
+                @if(Auth::user()->perfil_foto)
+                    <img src="{{ asset(Auth::user()->perfil_foto) }}" class="w-full h-full rounded-full border-2 {{ request()->routeIs('profile.edit') ? 'border-[#bc6a50]' : 'border-gray-300' }} object-cover">
+                @else
+                    <i class="bi bi-person-circle text-[1.4rem]"></i>
+                @endif
+            @else
+                <i class="bi bi-person-circle text-[1.4rem]"></i>
+            @endauth
+        </div>
+        <span class="text-[10px] font-black uppercase leading-none">{{ Auth::check() ? 'Perfil' : 'Entrar' }}</span>
+    </a>
+</div>
 
 @push('scripts')
 <script>
