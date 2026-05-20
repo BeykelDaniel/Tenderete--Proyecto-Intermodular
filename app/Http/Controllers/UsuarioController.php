@@ -61,7 +61,7 @@ class UsuarioController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'fecha_nacimiento' => 'required|date',
+            'fecha_nacimiento' => 'required|date|before:today',
             'genero' => 'required|in:hombre,mujer',
             'numero_telefono' => 'required|string|max:20',
             'perfil_foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -111,7 +111,7 @@ class UsuarioController extends Controller
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($usuario->id)],
             'password' => 'nullable|string|min:8', // Password opcional al editar
-            'fecha_nacimiento' => 'required|date',
+            'fecha_nacimiento' => 'required|date|before:today',
             'genero' => 'required|in:hombre,mujer',
             'numero_telefono' => 'required|string|max:20',
             'perfil_foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

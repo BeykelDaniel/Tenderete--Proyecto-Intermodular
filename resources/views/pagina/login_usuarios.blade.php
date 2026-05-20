@@ -81,7 +81,7 @@
 
                 <div class="space-y-1">
                     <label class="block text-xs font-black text-gray-500 uppercase tracking-widest ml-2">¿Cuándo naciste?</label>
-                    <input type="date" name="fecha_nacimiento" required
+                    <input type="date" name="fecha_nacimiento" required max="{{ date('Y-m-d') }}"
                         class="w-full p-3 bg-gray-50 border-2 border-gray-100 rounded-xl focus:bg-white focus:border-orange-500 outline-none font-bold text-sm">
                 </div>
 

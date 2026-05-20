@@ -85,7 +85,7 @@
                             {{-- Fecha de Nacimiento --}}
                             <div>
                                 <label class="{{ $labelClasses }}">Fecha de Nacimiento</label>
-                                <input type="date" name="fecha_nacimiento"
+                                <input type="date" name="fecha_nacimiento" max="{{ date('Y-m-d') }}"
                                     value="{{ old('fecha_nacimiento', $usuario->fecha_nacimiento ? \Carbon\Carbon::parse($usuario->fecha_nacimiento)->format('Y-m-d') : '') }}"
                                     class="{{ $inputClasses }} {{ $oper=='show' ? 'bg-gray-100 cursor-not-allowed' : '' }}"
                                     {{ $oper=='show' ? 'disabled' : 'required' }}>
