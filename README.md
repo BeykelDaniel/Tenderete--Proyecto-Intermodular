@@ -88,7 +88,6 @@ Tenderete es una plataforma que **prioriza la usabilidad cognitiva y la accesibi
 - **MySQL** 8.0 - Base de datos relacional segura
 - **Node.js** 18.x - Runtime JavaScript
 - **Git** - Control de versiones
-- **Docker** - Containerización (opcional)
 
 ### Características Técnicas
 -  Autenticación y autorización robusta
